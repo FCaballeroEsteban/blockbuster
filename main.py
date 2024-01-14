@@ -19,7 +19,7 @@ while(bandera):
         adminPeliculas()
     opcgestorPeli = int(input("Ingrese lo que desea hacer:\n"))    
     if opcgestorPeli == 1:
-        agregarPelicula(peliculas)
+        agregarPelicula (peliculas)
       
     break
     
