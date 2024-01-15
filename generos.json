@@ -1,6 +1,10 @@
 {
-    "G2": {
-        "id": "G2",
-        "nombre": "Comedia"
+    "G01": {
+        "id": "G01",
+        "nombre": "COMEDIA"
+    },
+    "G02": {
+        "id": "G02",
+        "nombre": "SUSPENSO"
     }
 }

@@ -57,7 +57,7 @@ def crearFormatos():
             except:
                 print('El numero que ha ingresado no es valido')
 
-        with open("generos.json", "w+") as f:
+        with open("formatos.json", "w+") as f:
                     f.write(json.dumps(formatos, indent=4))
 
 def listarFormatos():
@@ -65,3 +65,4 @@ def listarFormatos():
     print('La lista de los formatos son:\n')
     for codigo , diccionario in formatos.items():
         print(codigo,' ', diccionario['nombre'])
+        
