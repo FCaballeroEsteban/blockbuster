@@ -9,13 +9,13 @@ with open("generos.json", "r") as f:
 with open("peliculas.json", "r") as f:
     peliculas = json.loads(f.read())
 
-def crearPelicula():
+def editarPelicula():
     bandera = True
     while bandera:
         while True:
             try:
-                cod = int(input("Ingrese el id de la pelicula que desea crear:\n"))
-                codigo = "P" + str(cod)
+                codigo =input("Ingrese el id de la pelicula que desea editar:\n")
+                
                 break
             except:
                 print('El numero que ha ingresado no es valido')
@@ -50,16 +50,14 @@ def crearPelicula():
         sinopsis = str(input('Ingrese la sinopsis de la pelicula:\n'))
 
         generoAsignar = asignarGenero(generos, peliculas, codigo)  
-        formatoAsignar = asignarFormatos(formatos, peliculas, codigo)  
-        actorAsignar = asignarActor(actores,peliculas,codigo)       
+        formatoAsignar = asignarFormatos(formatos, peliculas, codigo)          
         peliculas[codigo] = {
             "id": codigo,
             "nombre": nombreGenero,
             "duracion" : str(duracion) + " " + "Horas",
             "sinopsis" : sinopsis,
             "generos": generoAsignar,
-            "formatos": formatoAsignar,
-            "actores" : actorAsignar
+            "formatos": formatoAsignar
         }
         print('PELICULA CREADA EN LA BASE DE DATOS')
         while True:
@@ -80,7 +78,7 @@ def crearPelicula():
                     f.write(json.dumps(peliculas, indent=4))
 
 def listarPelicula():
-    print('----------------Lista de Peliculas--------------')
+    print('----------------Lista de Generos--------------')
     print('La lista de las peliculas son:\n')
     for codigo , diccionario in peliculas.items():
         print(codigo, ' ', diccionario['nombre'])
@@ -211,12 +209,12 @@ def asignarActor(actores: json, peliculas: json, codigo) -> dict:
     actorAsignar = {}
     banderaOtro = True
     while banderaOtro:
-        print("A continuacion se mostraran todos los actores existentes en la base de datos:\n")
-        listarItems(actores)
+        print("A continuacion se mostraran todos los generos existentes en la base de datos:\n")
+        listarItems(generos)
         bandera = True
         while bandera:
             try:
-                opc = int(input('Elija una opcion:\n 1. Asignar un actor a la lista\n2. crear un nuevo actor y asignarlo\n3. Salir\n'))
+                opc = int(input('Elija una opcion:\n 1. Asignar un genero a la lista\n2. crear un nuevo genero y asignarlo\n3. Salir\n'))
                 if opc !=1 and opc !=2:
                     opc = 1/0
                 bandera = False
@@ -225,36 +223,36 @@ def asignarActor(actores: json, peliculas: json, codigo) -> dict:
         if  opc == 1:
             bandera1 = True
             while bandera1:   
-                    opcGen = str(input('Ingrese el id del actor a asignar:\n'))
-                    validacion = validarExistentes(actores, opcGen)
+                    opcGen = str(input('Ingrese el id del genero a asignar:\n'))
+                    validacion = validarExistentes(generos, opcGen)
                     if validacion ==1:
-                        actorAsignar[opcGen] = generos[opcGen]
+                        # generoAsignar[opcGen] = generos[opcGen]
                         
                         bandera1 = False
                     elif validacion == 0:
-                        print('EL actor ingresado no se encuetra en la base de datos')
+                        print('EL genero ingresado no se encuetra en la base de datos')
 
         elif opc == 2:
             crearGenero()
-            print('EL actor ha sido creado :D\n')
+            print('EL genero ha sido creado :D\n')
             bandera2 = True
             while bandera2:
                 try:
-                    opcAsig = int(input('¿Desea asignar el nuevo actor creado?\n1 SI\n 2. NO\n'))
+                    opcAsig = int(input('¿Desea asignar el nuevo genero creado?\n1 SI\n 2. NO\n'))
                     if opcAsig !=1 and opcAsig !=2:
                         opcAsig = 1/0
                     bandera2 = False
                 except:
                     print('EL numero ingresado no es valido')    
             if opcAsig == 1:
-                asignarActor(actores, peliculas, codigo)
+                asignarGenero(generos, peliculas, codigo)
             elif opcAsig == 2:
                 menuPeliculas()
         elif opc == 3:
             menuPeliculas()
         while True:
             try:
-                agregaNuevo = int(input('Desea agregar otro actor?:\n 1. SI\n 2. NO\n'))
+                agregaNuevo = int(input('Desea agregar otro genero?:\n 1. SI\n 2. NO\n'))
                 if agregaNuevo == 1:
                     os.system('clear')    
                     break
